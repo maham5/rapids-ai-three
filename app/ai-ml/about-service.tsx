@@ -1,0 +1,62 @@
+'use client'
+import Link from "next/link"
+import { useState } from 'react'
+import ModalVideo from 'react-modal-video'
+
+export default function Section3() {
+	// const [isOpen, setOpen] = useState(false)
+	return (
+		<>
+
+			<section className="position-relative overflow-hidden box-about-us-2 backgcolor">
+				<div className="container" data-aos="fade-up">
+					<div className="row align-items-center">
+						<div className="col-lg-6 mb-4 text-center text-lg-end">
+							<div className="box-images-about-9">
+								<div className="image-about-1">
+									<img src="/assets/imgs/pages/home9/about.png" alt="Vatech" />
+									{/* <a onClick={() => setOpen(true)} className="btn btn-play-2 popup-video">
+										<img src="/assets/imgs/pages/home9/play.png" alt="Vatech" />
+									</a> */}
+								</div>
+								<div className="image-about-2">
+									<img src="/assets/imgs/pages/home9/about2.png" alt="Vatech" />
+								</div>
+							</div>
+						</div>
+						<div className="col-lg-6 mt-10">
+							{/* <p className="paragraph-base-fitree-medium lable-border text-uppercase mb-4">About us</p> */}
+							<h2 className="heading-48-fitree color mb-4">Why Choose us
+For AI & Data Intelligence Services?</h2>
+							{/* <p className="paragraph-18-fitree mb-4">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatu Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut al</p> */}
+							{/* <ul className="d-flex align-items-center flex-wrap list-disc mb-4">
+								<li className="heading-24-fitree-bold">Inventory management</li>
+								<li className="heading-24-fitree-bold">Experienced Team</li>
+							</ul> */}
+							<div className="box-list-ticked">
+								<ul className="list-tick">
+									<li className="paragraph-20-fitree-medium mb-3">
+										
+										Our AI & Data Intelligence experts combine deep domain knowledge with advanced machine learning and data analytics to deliver intelligent, data-driven solutions.
+									</li>
+									<li className="paragraph-20-fitree-medium mb-3">
+										
+										We specialize in Generative & Agentic AI, GeoSpatial Intelligence, Computer Vision Systems, and Predictive Intelligence, tailored to your industry’s unique challenges. </li>
+									<li className="paragraph-20-fitree-medium mb-3">
+										
+										Our team leverages cutting-edge technologies to turn complex data into actionable insights that empower smarter, faster decisions.</li>
+                                    <li className="paragraph-20-fitree-medium mb-3">
+  
+  With scalable and secure AI solutions, we help businesses drive innovation, efficiency, and measurable growth.
+</li>
+								</ul>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</section>
+			
+		</>
+	)
+}
