@@ -14,13 +14,13 @@ export default function Section4() {
 						<div className="col-lg-6 mb-4 text-center text-lg-end">
 							<div className="box-images-about-9">
 								<div className="image-about-1">
-									<img src="/assets/imgs/pages/home9/about.png" alt="Vatech" />
+									<img src="/assets/imgs/pages/home9/img2.jpg" alt="Vatech" />
 									{/* <a onClick={() => setOpen(true)} className="btn btn-play-2 popup-video">
 										<img src="/assets/imgs/pages/home9/play.png" alt="Vatech" />
 									</a> */}
 								</div>
 								<div className="image-about-2">
-									<img src="/assets/imgs/pages/home9/about2.png" alt="Vatech" />
+									<img src="/assets/imgs/pages/home9/img1.jpg" alt="Vatech" />
 								</div>
 							</div>
 						</div>

@@ -11,9 +11,9 @@ import circle from "@/public/assets/imgs/template/circle.gif";
 
 export default function Section4() {
   const images = [
-    "/assets/imgs/template/aiii.mp4",
-    "/assets/imgs/template/mble.mp4",
-    "/assets/imgs/template/researchh.mp4",
+    "/assets/imgs/template/aiii.gif",
+    "/assets/imgs/template/mble.gif",
+    "/assets/imgs/template/researchh.gif",
   ];
 
   const handleImageClick = (index: number, image: string) => {

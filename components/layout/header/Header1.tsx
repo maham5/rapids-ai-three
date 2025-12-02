@@ -12,40 +12,30 @@ const [activeCategory, setActiveCategory] = useState<Category>("AI & Data Intell
 const menuItems: Record<Category, { name: string; href: string }[]> = {
   "AI & Data Intelligence": [
     { name: "Generative & Agentic AI", href: "/ai-ml" },
-    { name: "GeoSpatial Intelligence", href: "/agentic-ai" },
-    { name: "Computer Vision Systems", href: "/geospatial-ai" },
-    { name: "Bioinformatics & Precision AI", href: "/computer-vision" },
-    { name: "Predictive & Decision Intelligence", href: "/bioinformatics" },
+    { name: "GeoSpatial Intelligence", href: "/ai-ml" },
+    { name: "Computer Vision Systems", href: "/ai-ml" },
+    { name: "Bioinformatics & Precision AI", href: "/ai-ml" },
+    { name: "Predictive & Decision Intelligence", href: "/ai-ml" },
   ],
 
   "Product Engineering & Application Development": [
     { name: "Web Engineering", href: "/dashboard-services" },
-    { name: "Mobile Experience Design", href: "/web-app" },
-    { name: "Data & Insight Dashboards", href: "/analytics-dashboard" },
-    { name: "DevOps & Cloud Engineering", href: "/gis-dashboard" },
-    { name: "Blockchain & Smart Systems", href: "/blockchain-development" },
+    { name: "Mobile Experience Design", href: "/dashboard-services" },
+    { name: "Data & Insight Dashboards", href: "/dashboard-services" },
+    { name: "DevOps & Cloud Engineering", href: "/dashboard-services" },
+    { name: "Blockchain & Smart Systems", href: "/dashboard-services" },
   ],
   "Consulting & Research": [
     { name: "AI & Digital Transformation Consulting", href: "/consultant-research" },
-    { name: "Research & Development (R&D) ", href: "/web-app" },
-    { name: "Training & Capacity Building", href: "/analytics-dashboard" },
-    { name: "Data Strategy & Analytics Consulting", href: "/gis-dashboard" },
-    { name: "Technical Advisory & Innovation Partnerships", href: "/blockchain-development" },
+    { name: "Research & Development (R&D) ", href: "/consultant-research" },
+    { name: "Training & Capacity Building", href: "/consultant-research" },
+    { name: "Data Strategy & Analytics Consulting", href: "/consultant-research" },
+    { name: "Technical Advisory & Innovation Partnerships", href: "/consultant-research" },
   ],
 };
-
 const handleCategoryClick = (category: Category) => {
   setActiveCategory(category);
-  
-  const categoryRoutes: Record<Category, string> = {
-    "AI & Data Intelligence": "/ai-ml",
-    "Product Engineering & Application Development": "/dashboard-services",
-    "Consulting & Research": "/consultant-research"
-  };
-  
-  window.location.href = categoryRoutes[category];
 };
-
 	return (
 		<>
 
@@ -192,8 +182,8 @@ const handleCategoryClick = (category: Category) => {
     <div className="dropdown-content">
       <h2 className="dropdown-subtitle">{activeCategory} Services</h2>
       <div className="dropdown-items">
-        {menuItems[activeCategory].map((item) => (
-          <p key={item.href}>
+        {menuItems[activeCategory].map((item, index) => (
+          <p key={`${item.href}-${index}`}>
             <Link href={item.href} className="dropdown-item">
               {item.name}
             </Link>

@@ -16237,6 +16237,10 @@ textarea.input-field {
 
 .box-images-about-9 .image-about-1 img {
 	border-radius: 5px;
+	height:370px;
+	width:400px;
+	object-fit: cover;
+	
 }
 
 .box-images-about-9 .image-about-2 {
@@ -16248,6 +16252,9 @@ textarea.input-field {
 
 .box-images-about-9 .image-about-2 img {
 	border-radius: 5px;
+	height:370px;
+	width:400px;
+	object-fit: cover;
 }
 
 .box-our-services-9 {
@@ -21709,6 +21716,14 @@ textarea {
 /* Card body */
 .card-body {
   padding: 16px;
+}
+.card-title1 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #fff;
+  display: block;
+  margin-bottom: 8px;
+  text-decoration: none;
 }
 
 /* Title */
