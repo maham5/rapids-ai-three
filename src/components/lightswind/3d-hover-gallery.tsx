@@ -161,44 +161,45 @@ const ThreeDHoverGallery: React.FC<ThreeDHoverGalleryProps> = ({
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const getItemStyle = (index: number): React.CSSProperties => {
-    const isActive = activeIndex === index;
-    const isFocused = focusedIndex === index;
-    const baseWidthPx = 10;
+ const getItemStyle = (index: number): React.CSSProperties => {
+  const isActive = activeIndex === index;
+  const isFocused = focusedIndex === index;
+  const baseWidthPx = 10;
 
-    let width: string;
+  let width: string;
 
-    if (isMobile) {
-      width = isActive ? "80vw" : "70vw";
-    } else {
-      width = isActive
-        ? `${activeWidth}vw`
-        : `calc(${itemWidth}vw + ${baseWidthPx}px)`;
-    }
+  if (isMobile) {
+    width = isActive ? "80vw" : "70vw";
+  } else {
+    width = isActive
+      ? `${activeWidth}vw`
+      : `calc(${itemWidth}vw + ${baseWidthPx}px)`;
+  }
 
-    return {
-      width,
-      height: `calc(${itemHeight}vw + ${itemHeight}vh)`,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      backgroundColor,
-      cursor: "pointer",
-      filter:
-        isActive || isFocused
-          ? "inherit"
-          : `grayscale(${grayscaleStrength}) brightness(${brightnessLevel})`,
-      transform: isActive
-        ? `translateZ(calc(${hoverScale}vw + ${hoverScale}vh))`
-        : "none",
-      transition: `transform ${transitionDuration}s cubic-bezier(.1, .7, 0, 1), filter 3s cubic-bezier(.1, .7, 0, 1), width ${transitionDuration}s cubic-bezier(.1, .7, 0, 1)`,
-      willChange: "transform, filter, width",
-      zIndex: isActive ? 100 : "auto",
-      margin: isActive ? "0 0.45vw" : "0",
-      outline: isFocused ? "2px solid #3b82f6" : "none",
-      outlineOffset: "2px",
-      borderRadius: "0.5rem",
-    };
+  return {
+    width,
+    height: `calc(${itemHeight}vw + ${itemHeight}vh)`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundColor,
+    cursor: "pointer",
+    filter:
+      isActive || isFocused
+        ? "inherit"
+        : `grayscale(${grayscaleStrength}) brightness(${brightnessLevel})`,
+    transform: isActive
+      ? `translateZ(calc(${hoverScale}vw + ${hoverScale}vh))`
+      : "none",
+    transition: `transform ${transitionDuration}s cubic-bezier(.1, .7, 0, 1), filter 3s cubic-bezier(.1, .7, 0, 1), width ${transitionDuration}s cubic-bezier(.1, .7, 0, 1)`,
+    willChange: "transform, filter, width",
+    zIndex: isActive ? 100 : "auto",
+    margin: isActive ? "0 0.3vw" : "0",  // Adjusted margin
+    outline: isFocused ? "2px solid #3b82f6" : "none",
+    outlineOffset: "2px",
+    borderRadius: "0.5rem",
   };
+};
+
 
   return (
     <div
@@ -252,7 +253,7 @@ const ThreeDHoverGallery: React.FC<ThreeDHoverGalleryProps> = ({
                 }
               }}
             >
-              <h3 className="text-white text-2xl md:text-3xl font-bold text-center px-4 drop-shadow-lg">
+              <h3 className="text-white text-lg md:text-2xl font-bold text-center px-4 drop-shadow-lg">
                 {titles[index] || `Service ${index + 1}`}
               </h3>
             </div>

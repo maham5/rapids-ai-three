@@ -25,33 +25,34 @@ export default function Section4() {
   };
 
   return (
-    <section className="w-full bg-[#0a0a0a] py-12">
-      <div className="max-w-screen mx-auto px-4">
-        {/* Top centered heading */}
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-white">
-          Our Services
-        </h2>
+  <section className="w-full bg-[#0a0a0a] py-6">  {/* Reduced padding */}
+  <div className="max-w-screen mx-auto px-4">
+    {/* Top centered heading */}
+    <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-white"> {/* Reduced bottom margin */}
+      Our Services
+    </h2>
 
-        <ThreeDHoverGallery
-          images={images}
-          itemWidth={15}
-          itemHeight={12}
-          links={["/ai-ml", "/dashboard-services", "/consultant-research"]}
-          gap={0.6}
-          perspective={40}
-          hoverScale={12}
-          transitionDuration={1.5}
-          backgroundColor="#0a0a0a"
-          grayscaleStrength={0.1}
-          brightnessLevel={0.6}
-          activeWidth={35}
-          enableKeyboardNavigation={true}
-          autoPlay={true}
-          autoPlayDelay={3000}
-          onImageClick={(index, image) => handleImageClick(index, image)}
-          onImageHover={(index, image) => handleImageHover(index, image)}
-        />
-      </div>
-    </section>
+    <ThreeDHoverGallery
+      images={images}
+      itemWidth={15}
+      itemHeight={12}
+      links={["/ai-ml", "/dashboard-services", "/consultant-research"]}
+      gap={0.4} 
+      perspective={40}
+      hoverScale={12}
+      transitionDuration={1.5}
+      backgroundColor="#0a0a0a"
+      grayscaleStrength={0.1}
+      brightnessLevel={0.6}
+      activeWidth={35}
+      enableKeyboardNavigation={true}
+      autoPlay={true}
+      autoPlayDelay={3000}
+      onImageClick={(index, image) => handleImageClick(index, image)}
+      onImageHover={(index, image) => handleImageHover(index, image)}
+    />
+  </div>
+</section>
+
   );
 }

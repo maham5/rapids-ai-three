@@ -18,7 +18,7 @@ const QuickFacts = () => {
   const factsBottom = [
     { icon: <GiPartyPopper />, number: 90, label: "Client Retention Rate" },
     { icon: <FaHandshake />, number: 20, label: "Strategic Partnerships" },
-    { icon: <FaUsers />, number: 250, label: "Global Clients Served" },
+    { icon: <FaUsers />, number: 1000, label: "Global Clients Served" },
     { icon: <FaGlobe />, number: 2, label: "Countries of Presence" },
   ];
 

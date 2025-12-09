@@ -1,49 +1,48 @@
 'use client'
 import { useState } from 'react';
-
 import Link from 'next/link'
 
-const menuItems = {
+type Category = "AI & Data Intelligence" | "Product Engineering & Application Development" | "Consulting & Research";
+
+const menuItems: Record<Category, { name: string; href: string }[]> = {
   "AI & Data Intelligence": [
     { name: "Generative & Agentic AI", href: "/ai-ml" },
-    { name: "GeoSpatial Intelligence", href: "/agentic-ai" },
-    { name: "Computer Vision Systems", href: "/geospatial-ai" },
-    { name: "Bioinformatics & Precision AI", href: "/computer-vision" },
-    { name: "Predictive & Decision Intelligence", href: "/bioinformatics" },
+    { name: "GeoSpatial Intelligence", href: "/ai-ml" },
+    { name: "Computer Vision Systems", href: "/ai-ml" },
+    { name: "Bioinformatics & Precision AI", href: "/ai-ml" },
+    { name: "Predictive & Decision Intelligence", href: "/ai-ml" },
   ],
-   "Product Engineering & Application Development": [
+  "Product Engineering & Application Development": [
     { name: "Web Engineering", href: "/dashboard-services" },
-    { name: "Mobile Experience Design", href: "/web-app" },
-    { name: "Data & Insight Dashboards", href: "/analytics-dashboard" },
-    { name: "DevOps & Cloud Engineering", href: "/gis-dashboard" },
-    { name: "Blockchain & Smart Systems", href: "/blockchain-development" },
+    { name: "Mobile Experience Design", href: "/dashboard-services" },
+    { name: "Data & Insight Dashboards", href: "/dashboard-services" },
+    { name: "DevOps & Cloud Engineering", href: "/dashboard-services" },
+    { name: "Blockchain & Smart Systems", href: "/dashboard-services" },
   ],
   "Consulting & Research": [
     { name: "AI & Digital Transformation Consulting", href: "/consultant-research" },
-    { name: "Research & Development (R&D) ", href: "/web-app" },
-    { name: "Training & Capacity Building", href: "/analytics-dashboard" },
-    { name: "Data Strategy & Analytics Consulting", href: "/gis-dashboard" },
-    { name: "Technical Advisory & Innovation Partnerships", href: "/blockchain-development" },
+    { name: "Research & Development (R&D) ", href: "/consultant-research" },
+    { name: "Training & Capacity Building", href: "/consultant-research" },
+    { name: "Data Strategy & Analytics Consulting", href: "/consultant-research" },
+    { name: "Technical Advisory & Innovation Partnerships", href: "/consultant-research" },
   ],
 };
-
-type Category = keyof typeof menuItems;
 
 export default function Offcanvas({ isMobileMenu, handleMobileMenu }: any) {
 	const [openCategory, setOpenCategory] = useState<Category | null>(null);
 
-const toggleCategory = (category: Category) => {
-  setOpenCategory(openCategory === category ? null : category);
-};
+	const toggleCategory = (category: Category) => {
+		setOpenCategory(openCategory === category ? null : category);
+	};
 
 	const [isAccordion, setIsAccordion] = useState(0)
 
 	const handleAccordion = (key: any) => {
 		setIsAccordion(prevState => prevState === key ? null : key)
 	}
+	
 	return (
 		<>
-
 			<div className={`offCanvas__info ${isMobileMenu ? "active" : ""}`}>
 				<div className="offCanvas__close-icon menu-close" onClick={handleMobileMenu}>
 					<button>
@@ -59,139 +58,53 @@ const toggleCategory = (category: Category) => {
 					<ul className="navbar-nav navbar-nav-mobile">
 						<li className="nav-item ">
 							<a href="/" className="nav-link fw-medium" onClick={() => handleAccordion(1)} role="button" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
-							{/* <ul className={`dropdown-menu ${isAccordion === 1 ? "show" : ""}`}>
-								<li><Link className="dropdown-item" href="/">Home page 1</Link></li>
-								<li><Link className="dropdown-item" href="/index-2">Home page 2</Link></li>
-								<li><Link className="dropdown-item" href="/index-3">Home page 3</Link></li>
-								<li><Link className="dropdown-item" href="/index-4">Home page 4</Link></li>
-								<li><Link className="dropdown-item" href="/index-5">Home page 5</Link></li>
-								<li><Link className="dropdown-item" href="/index-6">Home page 6</Link></li>
-								<li><Link className="dropdown-item" href="/index-7">Home page 7</Link></li>
-								<li><Link className="dropdown-item" href="/index-8">Home page 8</Link></li>
-								<li><Link className="dropdown-item" href="/index-9">Home page 9</Link></li>
-								<li><Link className="dropdown-item" href="/index-10">Home page 10</Link></li>
-								<li><Link className="dropdown-item" href="/index-11">Home page 11</Link></li>
-								<li><Link className="dropdown-item" href="/index-12">Home page 12</Link></li>
-								<li><Link className="dropdown-item" href="/index-13">Home page 13</Link></li>
-								<li><Link className="dropdown-item" href="/index-14">Home page 14</Link></li>
-								<li><Link className="dropdown-item" href="/index-15">Home page 15</Link></li>
-								<li><Link className="dropdown-item" href="/index-16">Home page 16</Link></li>
-							</ul> */}
 						</li>
 						<li className="nav-item ">
 							<a href="/about-us" className="nav-link fw-medium" onClick={() => handleAccordion(2)} role="button" data-bs-toggle="dropdown" aria-expanded="false">About</a>
-							{/* <ul className={`dropdown-menu ${isAccordion === 2 ? "show" : ""}`}>
-								<li><Link className="dropdown-item" href="/about-us">About Us</Link></li>
-								<li><Link className="dropdown-item" href="/about-us-2">About Us 2</Link></li>
-								<li><Link className="dropdown-item" href="/about-us-3">About Us 3</Link></li>
-								<li><Link className="dropdown-item" href="/about-us-4">About Us 4</Link></li>
-							</ul> */}
 						</li>
-						<li className="nav-item ">
-							<a href="/" className="nav-link fw-medium" onClick={() => handleAccordion(3)} role="button" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
+						<li className="nav-item">
+							<a href="/" className="nav-link fw-medium" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+								Services
+							</a>
 							<ul className="mobile-dropdown">
-  {(Object.keys(menuItems) as (keyof typeof menuItems)[]).map((category) => (
-    <li key={category} className="mobile-dropdown-category">
-      <button
-        className="mobile-category-btn"
-        onClick={() => toggleCategory(category)}
-      >
-        {category}
-        <span className={`arrow ${openCategory === category ? "open" : ""}`} />
-      </button>
+								{(Object.keys(menuItems) as Category[]).map((category) => (
+									<li key={category} className="mobile-dropdown-category">
+										<button
+											className="mobile-category-btn"
+											onClick={() => toggleCategory(category)}
+										>
+											{category}
+											<span className={`arrow ${openCategory === category ? "open" : ""}`} />
+										</button>
 
-      {openCategory === category && (
-        <ul className="mobile-dropdown-items">
-          {menuItems[category].map((item) => (
-            <li key={item.href}>
-              <Link href={item.href} className="mobile-dropdown-item">
-                {item.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </li>
-  ))}
-</ul>
-
+										{openCategory === category && (
+											<ul className="mobile-dropdown-items">
+												{menuItems[category].map((item) => (
+													<li key={item.href}>
+														<Link href={item.href} className="mobile-dropdown-item">
+															{item.name}
+														</Link>
+													</li>
+												))}
+											</ul>
+										)}
+									</li>
+								))}
+							</ul>
 						</li>
 						<li className="nav-item ">
 							<a href="/projects" className="nav-link fw-medium" onClick={() => handleAccordion(4)} role="button" data-bs-toggle="dropdown" aria-expanded="false">industries</a>
-							{/* <ul className={`dropdown-menu ${isAccordion === 4 ? "show" : ""}`}>
-								<li><Link className="dropdown-item" href="/services">Project List</Link></li>
-								<li><Link className="dropdown-item" href="/services-2">Project Detail</Link></li>
-							</ul> */}
 						</li>
-						{/* <li className="nav-item ">
-							<a className="nav-link fw-medium" onClick={() => handleAccordion(5)} role="button" data-bs-toggle="dropdown" aria-expanded="false">News</a> */}
-							{/* <ul className={`dropdown-menu ${isAccordion === 5 ? "show" : ""}`}>
-								<li><Link className="dropdown-item" href="/news-grid">News Grid</Link></li>
-								<li><Link className="dropdown-item" href="/news-grid-sidebar">News Grid Sidebar</Link></li>
-								<li><Link className="dropdown-item" href="/news-details">Blog Details</Link></li>
-							</ul> */}
-						{/* </li> */}
 						<li className="nav-item ">
 							<a href="/contact" className="nav-link fw-medium" onClick={() => handleAccordion(6)} role="button" data-bs-toggle="dropdown" aria-expanded="false">Contact Us</a>
-							{/* <ul className={`dropdown-menu ${isAccordion === 6 ? "show" : ""}`}>
-								<li><Link className="dropdown-item" href="/contact">Contact Us</Link></li>
-								<li><Link className="dropdown-item" href="/pricing">Pricing</Link></li>
-								<li><Link className="dropdown-item" href="/team">Team</Link></li>
-								<li><Link className="dropdown-item" href="/team-detail">Team Details</Link></li>
-								<li><Link className="dropdown-item" href="/faq">FAQs</Link></li>
-								<li><Link className="dropdown-item" href="/404">Error 404</Link></li>
-							</ul> */}
 						</li>
 					</ul>
 				</div>
-				{/* <div className="side-gallery mb-4">
-					<div className="pt-1" />
-					<h4 className="mt-3 mb-3">Gallery</h4>
-					<div className="grid-items">
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-1.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-2.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-3.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-4.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-5.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-6.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-7.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-8.png" alt="vatech" />
-						</div>
-						<div className="zoom-img rounded-3 d-inline-flex overflow-hidden">
-							<img className="g-col-4" src="/assets/imgs/pages/offcanvas/gallery-9.png" alt="vatech" />
-						</div>
-					</div>
-				</div> */}
-				{/* <div className="box-contactus mb-30">
-					<h5 className="title-contactus neutral-1000 mb-3">Contact Us</h5>
-					<div className="contact-info">
-						<p className="address-2 text-md-medium neutral-1000"><strong>Address: </strong>1285 Crescent Wellington Heights, Louisville, KY 40204</p>
-						<p className="hour-work-2 text-md-medium neutral-1000"><strong>Hours: </strong> 8:00 - 17:00, Mon - Sat</p>
-						<p className="hour-work-2 text-md-medium neutral-1000"><strong>Phone: </strong> 01 256 986 3</p>
-					</div>
-				</div> */}
 			</div>
 
 			{isMobileMenu &&
 				<div className="offCanvas__overly active" onClick={handleMobileMenu} />
 			}
-
-
 		</>
 	)
 }

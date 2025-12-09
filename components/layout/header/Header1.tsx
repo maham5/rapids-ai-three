@@ -78,9 +78,9 @@ const handleCategoryClick = (category: Category) => {
 									<Link href="https://www.linkedin.com/company/rapidsai" className=" text-reset">
 										 <FaLinkedin size={24} />
 									</Link>
-									<Link href="/" className=" text-reset">
+									{/* <Link href="/" className=" text-reset">
 										  <FaTwitter  size={24} />
-									</Link>
+									</Link> */}
 									<Link href="https://www.instagram.com/rapidsai/" className=" text-reset">
 										 <FaInstagram size={24} />
 									</Link>

@@ -1,17 +1,67 @@
 'use client'
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
 import Link from "next/link"
 import { sliderGroup3Tab } from '@/util/swiperOptions'
+import { Volume2, VolumeX } from "lucide-react";
 
 export default function Section3() {
 	const [isTab, setIsTab] = useState(1)
-    const handleTab = (i: number) => {
-        setIsTab(i)
-    }
+	const [mutedStates, setMutedStates] = useState<{[key: string]: boolean}>({});
+	const videoRefs = useRef<{[key: string]: HTMLVideoElement | null}>({});
+
+	const handleTab = (i: number) => {
+		setIsTab(i)
+	}
+
+	const toggleMute = (videoId: string) => {
+		const video = videoRefs.current[videoId];
+		if (video) {
+			video.muted = !video.muted;
+			setMutedStates(prev => ({
+				...prev,
+				[videoId]: video.muted
+			}));
+		}
+	};
+
+	const VideoCard = ({ videoSrc, title, videoId }: { videoSrc: string, title: string, videoId: string }) => {
+		const isMuted = mutedStates[videoId] !== false;
+
+		return (
+			<div className="card-project-4">
+				<div className="card-image relative">
+					<video
+						ref={(el) => { videoRefs.current[videoId] = el; }}
+						className="wow img-custom-anim-left"
+						src={videoSrc}
+						autoPlay
+						loop
+						muted={isMuted}
+						playsInline
+					></video>
+					<button
+						onClick={() => toggleMute(videoId)}
+						className="absolute top-3 right-3 bg-black/60 text-white p-2 rounded-full"
+					>
+						{isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+					</button>
+				</div>
+				<div className="card-info">
+					<h6 className="heading-24-fitree-bold">{title}</h6>
+					<Link href="#" className="link-more">
+						<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+							<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+						</svg>
+					</Link>
+				</div>
+			</div>
+		);
+	};
+
 	return (
 		<>
-
 			<section className="position-relative overflow-hidden box-latest-projects-9">
 				<div className="container swiper-root position-relative" data-aos="fade-up">
 					<div className="row position-relative align-items-end">
@@ -41,299 +91,100 @@ export default function Section3() {
 				<div className="box-list-projects-9 auto-padding" data-aos="fade-up">
 					<div className="box-ul">
 						<ul className="nav nav-tabs" id="pills-tab" role="tablist">
-							<li><a className={`${isTab === 1 ? 'active' : ''}`}  onClick={() => handleTab(1)}data-bs-toggle="tab" type="button" role="tab" aria-controls="affordable" aria-selected="true" data-index={1}>Customer Support & Service Chatbots</a></li>
-							<li><a className={`${isTab === 2 ? 'active' : ''}`}  onClick={() => handleTab(2)}data-bs-toggle="tab" type="button" role="tab" aria-controls="knowledge" aria-selected="false" data-index={2}>Multilingual & Specialized Chatbots</a></li>
-							<li><a className={`${isTab === 3 ? 'active' : ''}`}  onClick={() => handleTab(3)}data-bs-toggle="tab" type="button" role="tab" aria-controls="savetimes" aria-selected="false" data-index={3}>AI Video & Speech Processing</a></li>
-							<li><a className={`${isTab === 4 ? 'active' : ''}`}  onClick={() => handleTab(4)}data-bs-toggle="tab" type="button" role="tab" aria-controls="fastquality" aria-selected="false" data-index={4}>Enterprise Solutions & Platforms</a></li>
-							<li><a className={`${isTab === 5 ? 'active' : ''}`}  onClick={() => handleTab(5)}data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={5}>Healthcare & Medical Solutions</a></li>
+							<li><a className={`${isTab === 1 ? 'active' : ''}`} onClick={() => handleTab(1)} data-bs-toggle="tab" type="button" role="tab" aria-controls="affordable" aria-selected="true" data-index={1}>Generative & Agentic AI</a></li>
+							<li><a className={`${isTab === 2 ? 'active' : ''}`} onClick={() => handleTab(2)} data-bs-toggle="tab" type="button" role="tab" aria-controls="knowledge" aria-selected="false" data-index={2}>Computer Vision & NLP systems</a></li>
+							<li><a className={`${isTab === 3 ? 'active' : ''}`} onClick={() => handleTab(3)} data-bs-toggle="tab" type="button" role="tab" aria-controls="savetimes" aria-selected="false" data-index={3}>Geospatial Intelligence</a></li>
+							<li><a className={`${isTab === 4 ? 'active' : ''}`} onClick={() => handleTab(4)} data-bs-toggle="tab" type="button" role="tab" aria-controls="fastquality" aria-selected="false" data-index={4}>Web development</a></li>
+							<li><a className={`${isTab === 5 ? 'active' : ''}`} onClick={() => handleTab(5)} data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={5}>Mobile development</a></li>
+							<li><a className={`${isTab === 6 ? 'active' : ''}`} onClick={() => handleTab(6)} data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={6}>Data & Insight Intelligence</a></li>
 						</ul>
 					</div>
 					<div className="box-content-tab">
 						<div className="tab-content">
-							{/* Tab 1: Customer Support & Service Chatbots */}
-							<div  className={isTab == 1 ? "tab-pane show active" : "tab-pane"} id="affordable" role="tabpanel" aria-labelledby="affordable-tab" tabIndex={0}>
+							<div className={isTab == 1 ? "tab-pane show active" : "tab-pane"} id="affordable" role="tabpanel" aria-labelledby="affordable-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-1">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img className="wow img-custom-anim-left" src="/assets/imgs/pages/home9/project2.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Webdoc Scripted Conversational Bot for Mobile Insurance Sales</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/zamindar.mp4" title="Webdoc Scripted Conversational Bot for Mobile Insurance Sales" videoId="tab1-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img className="wow img-custom-anim-left" src="/assets/imgs/pages/home9/project3.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">JazzCash Accident Insurance Conversational Call Bot</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/Jazz.mp4" title="JazzCash Accident Insurance Conversational Call Bot" videoId="tab1-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img className="wow img-custom-anim-left" src="/assets/imgs/pages/home9/project4.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">RapidsAI Conversational Voice & Chat Bot for Service Inquiry & Appointment Booking</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="RapidsAI Conversational Voice & Chat Bot for Service Inquiry & Appointment Booking" videoId="tab1-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img className="wow img-custom-anim-left" src="/assets/imgs/pages/home9/project3.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">SuiteBot — Smart Hotel Concierge & Booking Assistant</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="SuiteBot — Smart Hotel Concierge & Booking Assistant" videoId="tab1-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
 							</div>
-							
-							{/* Tab 2: Multilingual & Specialized Chatbots */}
-							<div  className={isTab == 2 ? "tab-pane show active" : "tab-pane"} id="knowledge" role="tabpanel" aria-labelledby="knowledge-tab" tabIndex={0}>
+
+							<div className={isTab == 2 ? "tab-pane show active" : "tab-pane"} id="knowledge" role="tabpanel" aria-labelledby="knowledge-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-2">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project2.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Weather-Integrated Multilingual Agentic Chatbot (Rapids AI x WeatherWalay)</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Weather-Integrated Multilingual Agentic Chatbot (Rapids AI x WeatherWalay)" videoId="tab2-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project3.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">German–English Bilingual Voice AI Assistant</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="German–English Bilingual Voice AI Assistant" videoId="tab2-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project4.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Dreamify — AI-Based Dream Analyzer</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Dreamify — AI-Based Dream Analyzer" videoId="tab2-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project2.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Smart Hospitality Conversational AI Assistants</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Smart Hospitality Conversational AI Assistants" videoId="tab2-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
 							</div>
-							
-							{/* Tab 3: AI Video & Speech Processing */}
-							<div  className={isTab == 3 ? "tab-pane show active" : "tab-pane"} id="savetimes" role="tabpanel" aria-labelledby="savetimes-tab" tabIndex={0}>
+
+							<div className={isTab == 3 ? "tab-pane show active" : "tab-pane"} id="savetimes" role="tabpanel" aria-labelledby="savetimes-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-3">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project3.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Custom Voice Generation & AI Lip-Sync Video Re-Dubbing (Talent Labs)</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Custom Voice Generation & AI Lip-Sync Video Re-Dubbing (Talent Labs)" videoId="tab3-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project2.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">AI Video-to-Video Translation & Lip-Sync Engine (Talent Labs)</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="AI Video-to-Video Translation & Lip-Sync Engine (Talent Labs)" videoId="tab3-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project4.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Antix Realtime Speech — Live Transcription, Translation & Subtitles</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Antix Realtime Speech — Live Transcription, Translation & Subtitles" videoId="tab3-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project3.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Live US Senate Captioning ASR API for Broadcast Encoder</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Live US Senate Captioning ASR API for Broadcast Encoder" videoId="tab3-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
 							</div>
-							
-							{/* Tab 4: Enterprise Solutions & Platforms */}
-							<div  className={isTab == 4 ? "tab-pane show active" : "tab-pane"} id="fastquality" role="tabpanel" aria-labelledby="fastquality-tab" tabIndex={0}>
+
+							<div className={isTab == 4 ? "tab-pane show active" : "tab-pane"} id="fastquality" role="tabpanel" aria-labelledby="fastquality-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-4">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project4.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Enterprise Customer Support Conversational AI Platform</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Enterprise Customer Support Conversational AI Platform" videoId="tab4-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project2.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Corporate Website + AI Conversational Bot Solution</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Corporate Website + AI Conversational Bot Solution" videoId="tab4-video2" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
 							</div>
-							
-							{/* Tab 5: Healthcare & Medical Solutions */}
-							<div  className={isTab == 5 ? "tab-pane show active" : "tab-pane"} id="experienced" role="tabpanel" aria-labelledby="experienced-tab" tabIndex={0}>
+
+							<div className={isTab == 5 ? "tab-pane show active" : "tab-pane"} id="experienced" role="tabpanel" aria-labelledby="experienced-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-5">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<div className="card-project-4">
-													<div className="card-image">
-														<img src="/assets/imgs/pages/home9/project3.png" alt="Vatech" />
-													</div>
-													<div className="card-info">
-														<h6 className="heading-24-fitree-bold">Surgeonix — AI Surgical Information Chatbot</h6>
-														<Link href="#" className="link-more">
-															<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-																<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-																<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-															</svg>
-														</Link>
-													</div>
-												</div>
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Surgeonix — AI Surgical Information Chatbot" videoId="tab5-video1" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
