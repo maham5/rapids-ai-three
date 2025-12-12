@@ -142,11 +142,11 @@ const handleCategoryClick = (category: Category) => {
         About Company
       </Link>
     </li>
-    <li>
+    {/* <li>
       <Link className="companylite-item" href="/about-us-2">
         Life @RapidsAI
       </Link>
-    </li>
+    </li> */}
   </ul>
 </li>
 
