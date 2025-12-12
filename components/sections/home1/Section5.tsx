@@ -21,7 +21,7 @@ export default function Section7() {
 								Our Services
 							</h2>
 							<div className="box-swiper pt-3 pb-6">
-								<Swiper {...sliderGroup1} className="swiper-container slider-group-1">
+								<Swiper {...sliderGroup1} loop={false} className="swiper-container slider-group-1">
 									<div className="swiper-wrapper">
 										<SwiperSlide>
 											<div className="card-testimonials-2 card-testimonials-13">
