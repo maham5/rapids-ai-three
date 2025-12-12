@@ -11,7 +11,6 @@ import { cn } from "../lib/utils";
 import { Card, CardContent } from "./card";
 import { BrainCircuit } from "lucide-react";
 
-
 export interface TimelineEvent {
   id?: string;
   // year: string;
@@ -47,26 +46,19 @@ export interface ScrollTimelineProps {
 
 const DEFAULT_EVENTS: TimelineEvent[] = [
   {
-  
     title: "Major Achievement",
-    
     description:
       "Description of the achievement or milestone reached during this time period.",
   },
   {
-   
     title: "Important Milestone",
-   
     description: "Details about this significant milestone and its impact.",
   },
   {
-    
     title: "Key Event",
-   
     description: "Information about this key event in the timeline.",
   },
 ];
-
 
 export const ScrollTimeline = ({
   events = DEFAULT_EVENTS,
@@ -107,15 +99,14 @@ export const ScrollTimeline = ({
 
   const progressHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
-  // ✅ add this line here
-const yOffset = useTransform(
-  smoothProgress as unknown as MotionValue<number>,
-  [0, 1],
-  [parallaxIntensity * 100, -parallaxIntensity * 100]
-) as MotionValue<number>;
+  const yOffset = useTransform(
+    smoothProgress as unknown as MotionValue<number>,
+    [0, 1],
+    [parallaxIntensity * 100, -parallaxIntensity * 100]
+  ) as MotionValue<number>;
 
   useEffect(() => {
-    const unsubscribe = scrollYProgress.onChange((v) => {
+    const unsubscribe = scrollYProgress.on("change", (v) => {
       const newIndex = Math.floor(v * events.length);
       if (
         newIndex !== activeIndex &&
@@ -236,9 +227,12 @@ const yOffset = useTransform(
         darkMode ? "bg-background text-foreground" : "",
         className
       )}
+      style={{ position: "relative" }}
     >
       <div className="text-center py-16 px-4">
-        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#fafbec]">{title}</h2>
+        <h2 className="text-3xl md:text-5xl font-bold mb-4 text-[#fafbec]">
+          {title}
+        </h2>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           {subtitle}
         </p>
@@ -250,11 +244,8 @@ const yOffset = useTransform(
             className={cn(getConnectorClasses(), "h-full absolute top-0 z-10")}
           ></div>
 
-          {/* === MODIFICATION START === */}
-          {/* Enhanced Progress Indicator with Traveling Glow */}
           {progressIndicator && (
             <>
-              {/* The main filled progress line */}
               <motion.div
                 className="absolute top-0 z-10"
                 style={{
@@ -265,29 +256,26 @@ const yOffset = useTransform(
                   borderRadius:
                     progressLineCap === "round" ? "9999px" : "0px",
                   background: `linear-gradient(to bottom, #22d3ee, #6366f1, #a855f7)`,
-                  // Enhanced shadow for a constant glow effect along the path
                   boxShadow: `
                     0 0 15px rgba(99,102,241,0.5),
                     0 0 25px rgba(168,85,247,0.3)
                   `,
                 }}
               />
-              {/* The traveling glow "comet" at the head of the line */}
               <motion.div
                 className="absolute z-20"
                 style={{
                   top: progressHeight,
                   left: "50%",
                   translateX: "-50%",
-                  translateY: "-50%", // Center the comet on the line's end point
+                  translateY: "-50%",
                 }}
               >
                 <motion.div
-                  className="w-5 h-5 rounded-full" // Size of the comet core
+                  className="w-5 h-5 rounded-full"
                   style={{
                     background:
                       "radial-gradient(circle, rgba(168,85,247,0.8) 0%, rgba(99,102,241,0.5) 40%, rgba(34,211,238,0) 70%)",
-                    // Intense, layered glow effect for the comet
                     boxShadow: `
                       0 0 15px 4px rgba(168, 85, 247, 0.6),
                       0 0 25px 8px rgba(99, 102, 241, 0.4),
@@ -306,104 +294,101 @@ const yOffset = useTransform(
               </motion.div>
             </>
           )}
-          {/* === MODIFICATION END === */}
 
-  <div className="relative z-20">
-    {/* ✅ Now map safely inside JSX */}
-    {events.map((event, index) => (
-      <div
-        key={event.id || index}
-        ref={(el) => {
-          timelineRefs.current[index] = el;
-        }}
-        className={cn(
-          "relative flex items-center mb-20 py-4",
-          "flex-col lg:flex-row",
-          cardAlignment === "alternating"
-            ? index % 2 === 0
-              ? "lg:justify-start"
-              : "lg:flex-row-reverse lg:justify-start"
-            : cardAlignment === "left"
-            ? "lg:justify-start"
-            : "lg:flex-row-reverse lg:justify-start"
-        )}
-      >
-        <div
-          className={cn(
-            "absolute top-1/2 transform -translate-y-1/2 z-30",
-            "left-1/2 -translate-x-1/2"
-          )}
-        >
-          <motion.div
-            className={cn(
-              "w-6 h-6 rounded-full border-4 bg-background flex items-center justify-center",
-              index <= activeIndex ? "border-primary" : "border bg-card"
-            )}
-            animate={
-              index <= activeIndex
-                ? {
-                    scale: [1, 1.3, 1],
-                    boxShadow: [
-                      "0 0 0px rgba(99,102,241,0)",
-                      "0 0 12px rgba(99,102,241,0.6)",
-                      "0 0 0px rgba(99,102,241,0)",
-                    ],
-                  }
-                : {}
-            }
-            transition={{
-              duration: 0.8,
-              repeat: Infinity,
-              repeatDelay: 4,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-
-        {/* ✅ Add parallax style here */}
-        <motion.div
-          className={cn(getCardClasses(index), "mt-12 lg:mt-0")}
-          variants={getCardVariants(index)}
-          initial="initial"
-          whileInView="whileInView"
-          viewport={{ once: false, margin: "-100px" }}
-          style={parallaxIntensity > 0 ? { y: yOffset } : undefined}
-        >
-          <Card className="bg-background border">
-            <CardContent className="p-6">
-              {dateFormat === "badge" ? (
-                <div className="flex items-center mb-2">
-                  {event.icon || (
-                  <BrainCircuit size={56} color="#af2025" strokeWidth={1.5} />
+          <div className="relative z-20">
+            {events.map((event, index) => (
+              <div
+                key={event.id || index}
+                ref={(el) => {
+                  timelineRefs.current[index] = el;
+                }}
+                className={cn(
+                  "relative flex items-center mb-20 py-4",
+                  "flex-col lg:flex-row",
+                  cardAlignment === "alternating"
+                    ? index % 2 === 0
+                      ? "lg:justify-start"
+                      : "lg:flex-row-reverse lg:justify-start"
+                    : cardAlignment === "left"
+                    ? "lg:justify-start"
+                    : "lg:flex-row-reverse lg:justify-start"
+                )}
+              >
+                <div
+                  className={cn(
+                    "absolute top-1/2 transform -translate-y-1/2 z-30",
+                    "left-1/2 -translate-x-1/2"
                   )}
-                  <span
+                >
+                  <motion.div
                     className={cn(
-                      "text-sm font-bold",
-                      event.color ? `text-${event.color}` : "text-primary"
+                      "w-6 h-6 rounded-full border-4 bg-background flex items-center justify-center",
+                      index <= activeIndex ? "border-primary" : "border bg-card"
                     )}
-                  >
-                   
-                  </span>
+                    animate={
+                      index <= activeIndex
+                        ? {
+                            scale: [1, 1.3, 1],
+                            boxShadow: [
+                              "0 0 0px rgba(99,102,241,0)",
+                              "0 0 12px rgba(99,102,241,0.6)",
+                              "0 0 0px rgba(99,102,241,0)",
+                            ],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      duration: 0.8,
+                      repeat: Infinity,
+                      repeatDelay: 4,
+                      ease: "easeInOut",
+                    }}
+                  />
                 </div>
-              ) : (
-                <p className="text-lg font-bold text-primary mb-2">
-                 
-                </p>
-              )}
-              <h3 className="text-xl font-bold mb-1">{event.title}</h3>
-              {/* {event.subtitle && (
-                <p className="text-muted-foreground font-medium mb-2">
-                  {event.subtitle}
-                </p>
-              )} */}
-              <p className="text-muted-foreground">{event.description}</p>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </div>
-    ))}
-  </div>
 
+                <motion.div
+                  className={cn(getCardClasses(index), "mt-12 lg:mt-0")}
+                  variants={getCardVariants(index)}
+                  initial="initial"
+                  whileInView="whileInView"
+                  viewport={{ once: false, margin: "-100px" }}
+                  style={parallaxIntensity > 0 ? { y: yOffset } : undefined}
+                >
+                  <Card className="bg-background border">
+                    <CardContent className="p-6">
+                      {dateFormat === "badge" ? (
+                        <div className="flex items-center mb-2">
+                          {event.icon || (
+                            <BrainCircuit
+                              size={56}
+                              color="#af2025"
+                              strokeWidth={1.5}
+                            />
+                          )}
+                          <span
+                            className={cn(
+                              "text-sm font-bold",
+                              event.color
+                                ? `text-${event.color}`
+                                : "text-primary"
+                            )}
+                          ></span>
+                        </div>
+                      ) : (
+                        <p className="text-lg font-bold text-primary mb-2"></p>
+                      )}
+                      <h3 className="text-xl font-bold mb-1">
+                        {event.title}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {event.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

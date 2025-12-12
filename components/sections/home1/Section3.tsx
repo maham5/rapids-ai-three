@@ -3,49 +3,33 @@ import { useState, useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react"
 import Link from "next/link"
 import { sliderGroup3Tab } from '@/util/swiperOptions'
-import { Volume2, VolumeX } from "lucide-react";
 
 export default function Section3() {
 	const [isTab, setIsTab] = useState(1)
-	const [mutedStates, setMutedStates] = useState<{[key: string]: boolean}>({});
-	const videoRefs = useRef<{[key: string]: HTMLVideoElement | null}>({});
 
 	const handleTab = (i: number) => {
 		setIsTab(i)
 	}
 
-	const toggleMute = (videoId: string) => {
-		const video = videoRefs.current[videoId];
-		if (video) {
-			video.muted = !video.muted;
-			setMutedStates(prev => ({
-				...prev,
-				[videoId]: video.muted
-			}));
-		}
-	};
-
 	const VideoCard = ({ videoSrc, title, videoId }: { videoSrc: string, title: string, videoId: string }) => {
-		const isMuted = mutedStates[videoId] !== false;
-
 		return (
 			<div className="card-project-4">
-				<div className="card-image relative">
+				<div className="card-image relative video-container">
 					<video
-						ref={(el) => { videoRefs.current[videoId] = el; }}
-						className="wow img-custom-anim-left"
+						key={videoId}
+						className="video-player"
 						src={videoSrc}
 						autoPlay
 						loop
-						muted={isMuted}
+						muted
 						playsInline
+						controls
+						controlsList="nodownload"
+						onError={(e) => {
+							console.error(`Video load error for ${videoId}:`, e);
+						}}
+						style={{ width: '100%', height: '100%', objectFit: 'cover' }}
 					></video>
-					<button
-						onClick={() => toggleMute(videoId)}
-						className="absolute top-3 right-3 bg-black/60 text-white p-2 rounded-full"
-					>
-						{isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
-					</button>
 				</div>
 				<div className="card-info">
 					<h6 className="heading-24-fitree-bold">{title}</h6>
@@ -56,6 +40,41 @@ export default function Section3() {
 						</svg>
 					</Link>
 				</div>
+
+				<style jsx>{`
+					.video-container {
+						position: relative;
+					}
+
+					.video-container video {
+						display: block;
+					}
+
+					.video-container video::-webkit-media-controls {
+						opacity: 0;
+						transition: opacity 0.3s;
+					}
+
+					.video-container:hover video::-webkit-media-controls {
+						opacity: 1;
+					}
+
+					.video-container video::-webkit-media-controls-enclosure {
+						opacity: 0;
+						transition: opacity 0.3s;
+					}
+
+					.video-container:hover video::-webkit-media-controls-enclosure {
+						opacity: 1;
+					}
+
+					.card-info {
+						position: relative;
+						z-index: 1;
+						background: white;
+						pointer-events: auto;
+					}
+				`}</style>
 			</div>
 		);
 	};
@@ -68,7 +87,7 @@ export default function Section3() {
 						<div className="col-lg-9 mb-4 text-center text-lg-start">
 							<h6 className="text-border-square mb-20 text-uppercase">Latest project</h6>
 							<h3 className="heading-48-fitree color-white">
-								We Have Complete<br className="d-none d-lg-block" />
+								We Have Completed<br className="d-none d-lg-block" />
 								1000+ Project Here
 							</h3>
 						</div>
@@ -93,103 +112,121 @@ export default function Section3() {
 						<ul className="nav nav-tabs" id="pills-tab" role="tablist">
 							<li><a className={`${isTab === 1 ? 'active' : ''}`} onClick={() => handleTab(1)} data-bs-toggle="tab" type="button" role="tab" aria-controls="affordable" aria-selected="true" data-index={1}>Generative & Agentic AI</a></li>
 							<li><a className={`${isTab === 2 ? 'active' : ''}`} onClick={() => handleTab(2)} data-bs-toggle="tab" type="button" role="tab" aria-controls="knowledge" aria-selected="false" data-index={2}>Computer Vision & NLP systems</a></li>
-							<li><a className={`${isTab === 3 ? 'active' : ''}`} onClick={() => handleTab(3)} data-bs-toggle="tab" type="button" role="tab" aria-controls="savetimes" aria-selected="false" data-index={3}>Geospatial Intelligence</a></li>
-							<li><a className={`${isTab === 4 ? 'active' : ''}`} onClick={() => handleTab(4)} data-bs-toggle="tab" type="button" role="tab" aria-controls="fastquality" aria-selected="false" data-index={4}>Web development</a></li>
-							<li><a className={`${isTab === 5 ? 'active' : ''}`} onClick={() => handleTab(5)} data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={5}>Mobile development</a></li>
-							<li><a className={`${isTab === 6 ? 'active' : ''}`} onClick={() => handleTab(6)} data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={6}>Data & Insight Intelligence</a></li>
+							<li><a className={`${isTab === 3 ? 'active' : ''}`}  data-bs-toggle="tab" type="button" role="tab" aria-controls="savetimes" aria-selected="false" data-index={3}>Geospatial Intelligence</a></li>
+							<li><a className={`${isTab === 4 ? 'active' : ''}`}  data-bs-toggle="tab" type="button" role="tab" aria-controls="fastquality" aria-selected="false" data-index={4}>Web development</a></li>
+							<li><a className={`${isTab === 5 ? 'active' : ''}`}  data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={5}>Mobile development</a></li>
+							<li><a className={`${isTab === 6 ? 'active' : ''}`}  data-bs-toggle="tab" type="button" role="tab" aria-controls="experienced" aria-selected="false" data-index={6}>Data & Insight Intelligence</a></li>
 						</ul>
 					</div>
 					<div className="box-content-tab">
 						<div className="tab-content">
+							{/* Tab 1: Generative & Agentic AI */}
 							<div className={isTab == 1 ? "tab-pane show active" : "tab-pane"} id="affordable" role="tabpanel" aria-labelledby="affordable-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-1">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/zamindar.mp4" title="Webdoc Scripted Conversational Bot for Mobile Insurance Sales" videoId="tab1-video1" />
+												<VideoCard videoSrc="/assets/imgs/template/zamindarbot.mp4" title="Zamindar Bot" videoId="tab1-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/Jazz.mp4" title="JazzCash Accident Insurance Conversational Call Bot" videoId="tab1-video2" />
+												<VideoCard videoSrc="/assets/imgs/template/jazz.mp4" title="Jazz Cash Call Agent" videoId="tab1-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="RapidsAI Conversational Voice & Chat Bot for Service Inquiry & Appointment Booking" videoId="tab1-video3" />
+												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Rapids AI Bot" videoId="tab1-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="SuiteBot — Smart Hotel Concierge & Booking Assistant" videoId="tab1-video4" />
+												<VideoCard videoSrc="/assets/imgs/template/demo.mp4" title="Call Agent For Telenor Demo RapidsAi" videoId="tab1-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
 							</div>
 
+							{/* Tab 2: Computer Vision & NLP systems */}
 							<div className={isTab == 2 ? "tab-pane show active" : "tab-pane"} id="knowledge" role="tabpanel" aria-labelledby="knowledge-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-2">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Weather-Integrated Multilingual Agentic Chatbot (Rapids AI x WeatherWalay)" videoId="tab2-video1" />
+												<VideoCard videoSrc="/assets/imgs/template/customvoice.mp4" title="Custom Voice Generator" videoId="tab2-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="German–English Bilingual Voice AI Assistant" videoId="tab2-video2" />
+												<VideoCard videoSrc="/assets/imgs/template/antix1.mp4" title="Antix Realtime Speech Video 1" videoId="tab2-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Dreamify — AI-Based Dream Analyzer" videoId="tab2-video3" />
+												<VideoCard videoSrc="/assets/imgs/template/antix2.mp4" title="Antix Realtime Speech Video 2" videoId="tab2-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Smart Hospitality Conversational AI Assistants" videoId="tab2-video4" />
+												<VideoCard videoSrc="/assets/imgs/template/antix3.mp4" title="Antix Realtime Speech Video 3" videoId="tab2-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
 							</div>
 
-							<div className={isTab == 3 ? "tab-pane show active" : "tab-pane"} id="savetimes" role="tabpanel" aria-labelledby="savetimes-tab" tabIndex={0}>
+							{/* Tab 3: Geospatial Intelligence */}
+							{/* <div className={isTab == 3 ? "tab-pane show active" : "tab-pane"} id="savetimes" role="tabpanel" aria-labelledby="savetimes-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-3">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Custom Voice Generation & AI Lip-Sync Video Re-Dubbing (Talent Labs)" videoId="tab3-video1" />
+												<VideoCard videoSrc="/assets/imgs/template/zamindar.mp4" title="Custom Voice Generation & AI Lip-Sync Video Re-Dubbing (Talent Labs)" videoId="tab3-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="AI Video-to-Video Translation & Lip-Sync Engine (Talent Labs)" videoId="tab3-video2" />
+												<VideoCard videoSrc="/assets/imgs/template/Jazz.mp4" title="AI Video-to-Video Translation & Lip-Sync Engine (Talent Labs)" videoId="tab3-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Antix Realtime Speech — Live Transcription, Translation & Subtitles" videoId="tab3-video3" />
+												<VideoCard videoSrc="/assets/imgs/template/zamindar.mp4" title="Antix Realtime Speech — Live Transcription, Translation & Subtitles" videoId="tab3-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Live US Senate Captioning ASR API for Broadcast Encoder" videoId="tab3-video4" />
+												<VideoCard videoSrc="/assets/imgs/template/Jazz.mp4" title="Live US Senate Captioning ASR API for Broadcast Encoder" videoId="tab3-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
-							</div>
+							</div> */}
 
-							<div className={isTab == 4 ? "tab-pane show active" : "tab-pane"} id="fastquality" role="tabpanel" aria-labelledby="fastquality-tab" tabIndex={0}>
+							{/* Tab 4: Web development */}
+							{/* <div className={isTab == 4 ? "tab-pane show active" : "tab-pane"} id="fastquality" role="tabpanel" aria-labelledby="fastquality-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-4">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Enterprise Customer Support Conversational AI Platform" videoId="tab4-video1" />
+												<VideoCard videoSrc="/assets/imgs/template/zamindar.mp4" title="Enterprise Customer Support Conversational AI Platform" videoId="tab4-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Corporate Website + AI Conversational Bot Solution" videoId="tab4-video2" />
+												<VideoCard videoSrc="/assets/imgs/template/Jazz.mp4" title="Corporate Website + AI Conversational Bot Solution" videoId="tab4-video2" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
-							</div>
+							</div> */}
 
-							<div className={isTab == 5 ? "tab-pane show active" : "tab-pane"} id="experienced" role="tabpanel" aria-labelledby="experienced-tab" tabIndex={0}>
+							{/* Tab 5: Mobile development */}
+							{/* <div className={isTab == 5 ? "tab-pane show active" : "tab-pane"} id="experienced" role="tabpanel" aria-labelledby="experienced-tab" tabIndex={0}>
 								<div className="box-swiper">
 									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-5">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Surgeonix — AI Surgical Information Chatbot" videoId="tab5-video1" />
+												<VideoCard videoSrc="/assets/imgs/template/zamindar.mp4" title="Surgeonix — AI Surgical Information Chatbot" videoId="tab5-video1" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
 								</div>
-							</div>
+							</div> */}
+
+							{/* Tab 6: Data & Insight Intelligence */}
+							{/* <div className={isTab == 6 ? "tab-pane show active" : "tab-pane"} id="data-intelligence" role="tabpanel" aria-labelledby="data-intelligence-tab" tabIndex={0}>
+								<div className="box-swiper">
+									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-6">
+										<div className="swiper-wrapper">
+											<SwiperSlide>
+												<VideoCard videoSrc="/assets/imgs/template/Jazz.mp4" title="Data Analytics & Business Intelligence Dashboard" videoId="tab6-video1" />
+											</SwiperSlide>
+										</div>
+									</Swiper>
+								</div>
+							</div> */}
 						</div>
 					</div>
 				</div>

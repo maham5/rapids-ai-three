@@ -304,9 +304,9 @@ Rapidsai Group provides cost-effective IT outsourcing solutions</p>
       <a href="https://www.facebook.com/rapidsaii/" target="_blank" rel="noopener noreferrer">
         <FaFacebook size={24} />
       </a>
-      <a href="/" target="_blank" rel="noopener noreferrer">
+      {/* <a href="/" target="_blank" rel="noopener noreferrer">
         <FaTwitter size={24} />
-      </a>
+      </a> */}
     </div>
 			</footer>
 

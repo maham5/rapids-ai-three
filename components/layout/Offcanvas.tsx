@@ -79,8 +79,8 @@ export default function Offcanvas({ isMobileMenu, handleMobileMenu }: any) {
 
 										{openCategory === category && (
 											<ul className="mobile-dropdown-items">
-												{menuItems[category].map((item) => (
-													<li key={item.href}>
+												{menuItems[category].map((item, index) => (
+  <li key={`${category}-${index}`}>
 														<Link href={item.href} className="mobile-dropdown-item">
 															{item.name}
 														</Link>
