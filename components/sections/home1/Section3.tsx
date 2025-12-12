@@ -123,7 +123,7 @@ export default function Section3() {
 							{/* Tab 1: Generative & Agentic AI */}
 							<div className={isTab == 1 ? "tab-pane show active" : "tab-pane"} id="affordable" role="tabpanel" aria-labelledby="affordable-tab" tabIndex={0}>
 								<div className="box-swiper">
-									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-1">
+									<Swiper {...sliderGroup3Tab} loop={false} className="swiper-container slider-group-3-tab-1">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
 												<VideoCard videoSrc="/assets/imgs/template/zamindarbot.mp4" title="Zamindar Bot" videoId="tab1-video1" />
@@ -145,7 +145,7 @@ export default function Section3() {
 							{/* Tab 2: Computer Vision & NLP systems */}
 							<div className={isTab == 2 ? "tab-pane show active" : "tab-pane"} id="knowledge" role="tabpanel" aria-labelledby="knowledge-tab" tabIndex={0}>
 								<div className="box-swiper">
-									<Swiper {...sliderGroup3Tab} className="swiper-container slider-group-3-tab-2">
+									<Swiper {...sliderGroup3Tab} loop={false} className="swiper-container slider-group-3-tab-2">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
 												<VideoCard videoSrc="/assets/imgs/template/customvoice.mp4" title="Custom Voice Generator" videoId="tab2-video1" />
