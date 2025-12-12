@@ -129,7 +129,7 @@ export default function Section3() {
 												<VideoCard videoSrc="/assets/imgs/template/zamindarbot.mp4" title="Zamindar Bot" videoId="tab1-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/jazz.mp4" title="Jazz Cash Call Agent" videoId="tab1-video2" />
+												<VideoCard videoSrc="/assets/imgs/template/jazzz.mp4" title="Jazz Cash Call Agent" videoId="tab1-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
 												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Rapids AI Bot" videoId="tab1-video3" />
