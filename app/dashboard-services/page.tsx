@@ -7,7 +7,7 @@ import Section4 from './service';
 import { FaInstagram,  FaLinkedin, FaFacebook, FaTwitter } from 'react-icons/fa';
 import { Smartphone, Globe, BarChart3, Map, ShieldCheck } from "lucide-react";
 
-
+import badge from "@/public/assets/imgs/template/logo1.png"
 import logo from "@/public/assets/imgs/template/dark-logo.png"
 import Image from 'next/image'
 import BenefitsSection from './section';
@@ -238,7 +238,11 @@ Our developers specialize in modern frameworks and tools to build powerful web, 
 				
 				  <p>Copyright © 2025 <a href="/">RapidsAI</a>. All rights reserved.</p>
 				  
-				
+							 <Image 
+        src={badge} 
+        className="py-2"
+        alt="Certification Badge"
+    />
 				 				 <div className="social-icons">
       <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">
         <FaInstagram size={24} />

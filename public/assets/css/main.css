@@ -2853,6 +2853,7 @@ img {
 
 .card-blog .card-image img {
 	width: 100%;
+	
 }
 
 .card-blog .card-image .card-date {
@@ -7120,7 +7121,6 @@ ul .card-icon-left .card-icon svg {
 }
 .box-testimonials-16 {
     background-color: #0d1933;
-   
 }
 
 .box-testimonials-16 .container-fluid {
@@ -7132,7 +7132,7 @@ ul .card-icon-left .card-icon svg {
 }
 
 .testimonial-left-section {
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(5, 1, 33, 0.2);
     border-right: none;
     padding: 60px 40px;
     min-height: 600px;
@@ -7142,7 +7142,7 @@ ul .card-icon-left .card-icon svg {
 }
 
 .testimonial-right-section {
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(5, 1, 33, 0.2);
     padding: 60px 40px;
     min-height: 600px;
     display: flex;
@@ -7163,7 +7163,7 @@ ul .card-icon-left .card-icon svg {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* margin-top: 5px; */
+    margin-top: 15px;
 }
 
 .author-info {
@@ -7177,7 +7177,12 @@ ul .card-icon-left .card-icon svg {
     gap: 5px;
     justify-content: center !important;
     align-items: center !important;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+}
+
+.author-info h5 {
+    margin-top: 8px;
+    margin-bottom: 3px;
 }
 
 .box-button-slider-testimonials-16 {
@@ -7185,7 +7190,7 @@ ul .card-icon-left .card-icon svg {
     justify-content: center !important;
     align-items: center !important;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .box-button-slider-testimonials-16 .swiper-button-prev-style-6,
@@ -7211,12 +7216,31 @@ ul .card-icon-left .card-icon svg {
     .testimonial-left-section {
         border-right: 2px solid rgba(255, 255, 255, 0.2);
         border-bottom: none;
-        min-height: 400px;
+        min-height: 300px;
+        padding: 30px 20px;
     }
     
     .testimonial-right-section {
         border-top: none;
-        min-height: 500px;
+        min-height: 400px;
+        padding: 30px 20px;
+    }
+
+    .card-author {
+        margin-top: 10px;
+    }
+
+    .rating {
+        margin-bottom: 5px;
+    }
+
+    .author-info h5 {
+        margin-top: 5px;
+        margin-bottom: 2px;
+    }
+
+    .box-button-slider-testimonials-16 {
+        margin-top: 15px;
     }
 }
 .card-testimonials-13 {
@@ -21902,7 +21926,7 @@ textarea {
 .card-blog .card-image img {
   width: 100%;
   height: 250px;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
 }
 
@@ -22006,7 +22030,7 @@ textarea {
 /* Image */
 .card-blog .card-image img {
   width: 100%;
-  height: 300px;
+  height: 500px;
   object-fit: cover;
   display: block;
 }

@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from "next/link"
 import Mainpage from "./section1"
 import Section2 from "./section2"
-
+import badge from "@/public/assets/imgs/template/logo1.png"
 import { FaInstagram,  FaLinkedin, FaFacebook, FaTwitter } from 'react-icons/fa';
 import Section3 from "./section3"
 
@@ -53,7 +53,11 @@ export default function Services() {
 				   />
 				
 				  <p>Copyright © 2025 <a href="/">RapidsAI</a>. All rights reserved.</p>
-				  
+				  				 <Image 
+        src={badge} 
+        className="py-2"
+        alt="Certification Badge"
+    />
 				
 								 <div className="social-icons">
 	  <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">

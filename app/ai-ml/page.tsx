@@ -7,7 +7,7 @@ import { Bot, Globe, Camera, Cpu, TrendingUp } from "lucide-react";
 import Section3 from './about-service';
 import { FaInstagram,  FaLinkedin, FaFacebook, FaTwitter } from 'react-icons/fa';
 
-
+import badge from "@/public/assets/imgs/template/logo1.png"
 import logo from "@/public/assets/imgs/template/dark-logo.png"
 import Image from 'next/image'
 
@@ -211,7 +211,11 @@ This robust tech stack empowers us to deliver precise, adaptive, and high-perfor
                    />
                 
                   <p>Copyright © 2025 <a href="/">RapidsAI</a>. All rights reserved.</p>
-                  
+                <Image 
+        src={badge} 
+        className="py-2"
+        alt="Certification Badge"
+    />
                 
                  				 <div className="social-icons">
       <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">
