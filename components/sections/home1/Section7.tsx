@@ -18,7 +18,7 @@ export default function Section7() {
    />
 
     <p>Copyright © 2025 <a href="/">RapidsAI</a>. All rights reserved.</p>
-	
+<div><a href="https://businessfirms.co/e-commerce-development-companies-in-united-states" target="_blank"><img src="https://firebasestorage.googleapis.com/v0/b/hk-business-firm.appspot.com/o/badge%2Ftop-ecommerce-development-company-badge-1.png?alt=media&token=19d3a959-60de-452e-b433-96645e8cb72c" title="Top AI Developing Company" alt="Top AI Developing Company" style={{width: '120px', height: 'auto'}} /></a></div>
 
     <div className="social-icons">
       <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">

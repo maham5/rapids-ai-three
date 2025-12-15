@@ -10,14 +10,14 @@ import logo from "@/public/assets/imgs/template/dark-logo.png"
 const blogs = [
   {
     id: 1,
-    img: "/assets/imgs/pages/blog/blog.png",
+    img: "/assets/imgs/template/jazzcash.png",
     title: "Webdoc Scripted Conversational Bot for Mobile Insurance Sales",
     description: "Rapids AI built an Urdu-first hybrid conversational bot for Webdoc and Telenor that intuitively sells mobile insurance add-ons, streamlines onboarding, answers queries, and boosts conversion through an optimized, low-friction chat experience.",
   },
   
   {
     id: 2,
-    img: "/assets/imgs/pages/blog/blog2.png",
+    img: "/assets/imgs/template/jazzcash.png",
     title: "JazzCash Accident Insurance Conversational Call Bot",
     description: "Rapids AI developed a fully conversational, Urdu-first call bot for JazzCash insurance customers that understands natural speech, assists in reporting accidents, initiating claims, and requesting emergency support, and replaces manual helplines by collecting all essential details without rigid scripts.",
   },
@@ -29,7 +29,7 @@ const blogs = [
   },
   {
     id: 4,
-    img: "/assets/imgs/pages/blog/blog4.png",
+    img: "/assets/imgs/template/Weatherwalay.png",
     title: "Weather-Integrated Multilingual Agentic Chatbot (Rapids AI x WeatherWalay)",
     description: "Rapids AI partnered with WeatherWalay to build a multilingual, agentic chatbot that delivers hyper-local weather insights, personalized alerts, and agricultural guidance in English, Urdu, and Roman Urdu, using real-time API calls for accurate conditions, forecasts, and risk updates.",
   },
