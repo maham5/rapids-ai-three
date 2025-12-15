@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from "@/components/layout/Layout"
 import Link from 'next/link'
 import { ScrollTimeline } from '@/src/components/lightswind/scroll-timeline';
+import badge2 from "@/public/assets/imgs/template/logo2.png"
 import BeamCircle from '@/src/components/lightswind/beam-circle';
 import { Bot, Globe, Camera, Cpu, TrendingUp } from "lucide-react";
 import Section3 from './about-service';
@@ -204,36 +205,50 @@ This robust tech stack empowers us to deliver precise, adaptive, and high-perfor
 
 
 
-          <footer className='bgcolor'>
+          
+                    <footer>
                    <Image src={logo}
                    alt="hello"
                    width={150}
                    />
                 
                   <p>Copyright © 2025 <a href="/">RapidsAI</a>. All rights reserved.</p>
-                <Image 
-        src={badge} 
-        className="py-2"
-        alt="Certification Badge"
-    />
                 
-                 				 <div className="social-icons">
-      <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">
-        <FaInstagram size={24} />
-      </a>
-     
-      <a href="https://www.linkedin.com/company/rapidsai" target="_blank" rel="noopener noreferrer">
-        <FaLinkedin size={24} />
-      </a>
-      <a href="https://www.facebook.com/rapidsaii/" target="_blank" rel="noopener noreferrer">
-        <FaFacebook size={24} />
-      </a>
-      <a href="/" target="_blank" rel="noopener noreferrer">
-        <FaTwitter size={24} />
-      </a>
-    </div>
-                </footer>
+                
+                   <div className="social-icons">
+                <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram size={24} />
+                </a>
+               
+                <a href="https://www.linkedin.com/company/rapidsai" target="_blank" rel="noopener noreferrer">
+                  <FaLinkedin size={24} />
+                </a>
+                <a href="https://www.facebook.com/rapidsaii/" target="_blank" rel="noopener noreferrer">
+                  <FaFacebook size={24} />
+                </a>
+                {/* <a href="/" target="_blank" rel="noopener noreferrer">
+                  <FaTwitter size={24} />
+                </a> */}
+              </div>
+            <div className="flex items-center gap-2">
+            <Image
+              src={badge}
+              alt="Certification Badge"
+              width={100}
+              height={100}
+              className="py-2 w-[100px] h-[100px] object-contain"
+            />
           
+            <Image
+              src={badge2}
+              alt="Certification Badge"
+              width={100}
+              height={100}
+              className="py-2 w-[100px] h-[100px] object-contain"
+            />
+          </div>
+          
+                </footer>
           </Layout>
   
   )

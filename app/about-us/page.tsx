@@ -4,7 +4,7 @@ import Layout from "@/components/layout/Layout"
 import { sliderGroup2 } from '@/util/swiperOptions'
 import { FaInstagram,  FaLinkedin, FaFacebook, FaTwitter } from 'react-icons/fa';
 import badge from "@/public/assets/imgs/template/logo1.png"
-
+import badge2 from "@/public/assets/imgs/template/logo2.png"
 import logo from "@/public/assets/imgs/template/dark-logo.png"
 
 import { sliderGroup3 } from '@/util/swiperOptions'
@@ -291,11 +291,7 @@ Rapidsai Group provides cost-effective IT outsourcing solutions</p>
 			   />
 			
 				<p>Copyright © 2025 <a href="/">RapidsAI</a>. All rights reserved.</p>
-								 <Image 
-        src={badge} 
-        className="py-2"
-        alt="Certification Badge"
-    />
+			
 			
 				 <div className="social-icons">
       <a href="https://www.instagram.com/rapidsai/" target="_blank" rel="noopener noreferrer">
@@ -312,6 +308,24 @@ Rapidsai Group provides cost-effective IT outsourcing solutions</p>
         <FaTwitter size={24} />
       </a> */}
     </div>
+	<div className="flex items-center gap-2">
+  <Image
+    src={badge}
+    alt="Certification Badge"
+    width={100}
+    height={100}
+    className="py-2 w-[100px] h-[100px] object-contain"
+  />
+
+  <Image
+    src={badge2}
+    alt="Certification Badge"
+    width={100}
+    height={100}
+    className="py-2 w-[100px] h-[100px] object-contain"
+  />
+</div>
+
 			</footer>
 
 
