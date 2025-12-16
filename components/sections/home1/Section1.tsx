@@ -6,16 +6,12 @@ export default function Section1() {
     <section className="video-banner-section">
       {/* Background video */}
       <div className="video-background">
-        <video
+        <img
+          src="/assets/imgs/template/head.gif"
+          alt="Background animation"
           className="video-element"
-          autoPlay
-          loop
-          muted
-          playsInline
-        >
-          <source src="/assets/imgs/template/head.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        />
+       
       </div>
 
       {/* Dark overlay */}
