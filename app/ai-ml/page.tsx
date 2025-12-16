@@ -234,17 +234,17 @@ This robust tech stack empowers us to deliver precise, adaptive, and high-perfor
             <Image
               src={badge}
               alt="Certification Badge"
-              width={100}
-              height={100}
-              className="py-2 w-[100px] h-[100px] object-contain"
+             width={140}
+    height={100}
+    className="py-2 w-[140px] h-[100px] object-contain"
             />
           
             <Image
               src={badge2}
               alt="Certification Badge"
-              width={100}
-              height={100}
-              className="py-2 w-[100px] h-[100px] object-contain"
+             width={140}
+    height={100}
+    className="py-2 w-[140px] h-[100px] object-contain"
             />
           </div>
           

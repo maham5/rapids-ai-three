@@ -6,78 +6,56 @@ import { sliderGroup3Tab } from '@/util/swiperOptions'
 
 export default function Section3() {
 	const [isTab, setIsTab] = useState(1)
+const [openVideo, setOpenVideo] = useState<string | null>(null);
 
 	const handleTab = (i: number) => {
 		setIsTab(i)
 	}
 
-	const VideoCard = ({ videoSrc, title, videoId }: { videoSrc: string, title: string, videoId: string }) => {
-		return (
-			<div className="card-project-4">
-				<div className="card-image relative video-container">
-					<video
-						key={videoId}
-						className="video-player"
-						src={videoSrc}
-						autoPlay
-						loop
-						muted
-						playsInline
-						controls
-						controlsList="nodownload"
-						onError={(e) => {
-							console.error(`Video load error for ${videoId}:`, e);
-						}}
-						style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-					></video>
-				</div>
-				<div className="card-info">
-					<h6 className="heading-24-fitree-bold">{title}</h6>
-					<Link href="#" className="link-more">
-						<svg width={15} height={14} viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<path d="M8.00005 13C8.00005 13 14 8.58107 14 6.99995C14 5.41884 8 1 8 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-							<path d="M1.00005 13C1.00005 13 6.99999 8.58107 7 6.99995C7.00001 5.41884 1 1 1 1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-						</svg>
-					</Link>
-				</div>
+	const VideoCard = ({
+  gifSrc,
+  title,
+  videoId,
+}: { gifSrc: string; title: string; videoId: string }) => {
+  return (
+    <div className="card-project-4">
+      <div className="card-image relative video-container">
+        <img
+          key={videoId}
+          className="video-player"
+          src={gifSrc}
+          alt={title}
+          onError={(e) => {
+            console.error(`GIF load error for ${videoId}:`, e);
+          }}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </div>
 
-				<style jsx>{`
-					.video-container {
-						position: relative;
-					}
+      <div className="card-info">
+        <h6 className="heading-24-fitree-bold">{title}</h6>
+        {/* <Link href="#" className="link-more">
+          {/* same svg */}
+        {/* </Link> */} 
+      </div>
 
-					.video-container video {
-						display: block;
-					}
+      <style jsx>{`
+        .video-container {
+          position: relative;
+        }
 
-					.video-container video::-webkit-media-controls {
-						opacity: 0;
-						transition: opacity 0.3s;
-					}
+        /* video wali CSS ko touch nahi kiya */
+        .card-info {
+          position: relative;
+          z-index: 1;
+          background: white;
+          pointer-events: auto;
+        }
+      `}</style>
+    </div>
+  );
+};
 
-					.video-container:hover video::-webkit-media-controls {
-						opacity: 1;
-					}
-
-					.video-container video::-webkit-media-controls-enclosure {
-						opacity: 0;
-						transition: opacity 0.3s;
-					}
-
-					.video-container:hover video::-webkit-media-controls-enclosure {
-						opacity: 1;
-					}
-
-					.card-info {
-						position: relative;
-						z-index: 1;
-						background: white;
-						pointer-events: auto;
-					}
-				`}</style>
-			</div>
-		);
-	};
 
 	return (
 		<>
@@ -126,16 +104,19 @@ export default function Section3() {
 									<Swiper {...sliderGroup3Tab} loop={false} className="swiper-container slider-group-3-tab-1">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/zamindarbot.mp4" title="Zamindar Bot" videoId="tab1-video1" />
+												<VideoCard gifSrc="/assets/imgs/template/zamindarbot.gif" title="Zamindar Bot" videoId="tab1-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/jazzz.mp4" title="Jazz Cash Call Agent" videoId="tab1-video2" />
+												<VideoCard gifSrc="/assets/imgs/template/jazzz.gif" title="Jazz Cash Call Agent" videoId="tab1-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/rapids.mp4" title="Rapids AI Bot" videoId="tab1-video3" />
+												<VideoCard gifSrc="/assets/imgs/template/rapids.gif" title="Rapids AI Bot" videoId="tab1-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/demo.mp4" title="Call Agent For Telenor Demo RapidsAi" videoId="tab1-video4" />
+												<VideoCard gifSrc="/assets/imgs/template/call-agent.gif" title="Call Agent For Telenor  " videoId="tab1-video4" />
+											</SwiperSlide>
+												<SwiperSlide>
+												<VideoCard gifSrc="/assets/imgs/template/demo.gif" title="Call Agent For  Demo RapidsAi" videoId="tab1-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
@@ -148,16 +129,16 @@ export default function Section3() {
 									<Swiper {...sliderGroup3Tab} loop={false} className="swiper-container slider-group-3-tab-2">
 										<div className="swiper-wrapper">
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/customvoice.mp4" title="Custom Voice Generator" videoId="tab2-video1" />
+												<VideoCard gifSrc="/assets/imgs/template/customvoice.gif" title="Custom Voice Generator" videoId="tab2-video1" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/antix1.mp4" title="Antix Realtime Speech Video 1" videoId="tab2-video2" />
+												<VideoCard gifSrc="/assets/imgs/template/antix1.gif" title="Antix Realtime Speech Video 1" videoId="tab2-video2" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/antix2.mp4" title="Antix Realtime Speech Video 2" videoId="tab2-video3" />
+												<VideoCard gifSrc="/assets/imgs/template/antix2.gif"title="Antix Realtime Speech Video 2" videoId="tab2-video3" />
 											</SwiperSlide>
 											<SwiperSlide>
-												<VideoCard videoSrc="/assets/imgs/template/antix3.mp4" title="Antix Realtime Speech Video 3" videoId="tab2-video4" />
+												<VideoCard gifSrc="/assets/imgs/template/antix3.gif" title="Antix Realtime Speech Video 3" videoId="tab2-video4" />
 											</SwiperSlide>
 										</div>
 									</Swiper>
