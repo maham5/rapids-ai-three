@@ -73,10 +73,18 @@ export default function RootLayout({
                 {/* + */}
                 
                 {children}
-                <SmokeyCursor
-       
-      />
-            
+      <SmokeyCursor
+  simulationResolution={64}
+  dyeResolution={512}
+  captureResolution={256}
+  pressureIterations={8}
+  densityDissipation={4}
+  velocityDissipation={3}
+  splatForce={2500}
+  enableShading={false}
+  intensity={0.6}
+/>
+
         
                 </body>
             
