@@ -114,7 +114,7 @@ export default function NewsGrid() {
   return (
     <Layout headerStyle={1} footerStyle={1}>
 
-      <section className="box-faq-single-banner @@class">
+      <section className="box-faq-single-bannerproject @@class">
         <div className="box-faq-single-banner-inner">
           <div className="container">
             <h1 className="display-ag-2xl color-white">Projects</h1>

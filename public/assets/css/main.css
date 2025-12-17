@@ -18990,6 +18990,18 @@ footer .social-icons svg {
 	background-size: cover;
 }
 
+.box-faq-single-banneraii {
+	background-image: url(../imgs/template/aiml.jpg);
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
+}
+.box-faq-single-bannerproject {
+	background-image: url(../imgs/template/projectt.jpg);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	background-size: cover;
+}
 .box-faq-single-bannercs {
 	background-image: url(../imgs/template/cs.jpg);
 	background-repeat: no-repeat;

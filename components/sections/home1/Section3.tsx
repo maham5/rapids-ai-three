@@ -353,6 +353,13 @@ export default function Section3() {
 											</SwiperSlide>
 											<SwiperSlide>
 												<VideoCard 
+													gifSrc="/assets/imgs/template/zamindarbot.gif" 
+													title="WeatherWalay" 
+													videoSrc="/assets/imgs/template/zamindarbot.mp4" 
+												/>
+											</SwiperSlide>
+											<SwiperSlide>
+												<VideoCard 
 													gifSrc="/assets/imgs/template/jazzz.gif" 
 													title="Jazz Cash Call Agent" 
 													videoSrc="/assets/imgs/template/jazzz.mp4" 
@@ -372,13 +379,13 @@ export default function Section3() {
 													videoSrc="/assets/imgs/template/call-agent.mp4" 
 												/>
 											</SwiperSlide>
-											<SwiperSlide>
+											{/* <SwiperSlide>
 												<VideoCard 
 													gifSrc="/assets/imgs/template/demo.gif" 
 													title="Call Agent For Demo RapidsAi" 
 													videoSrc="/assets/imgs/template/demo.mp4" 
 												/>
-											</SwiperSlide>
+											</SwiperSlide> */}
 										</div>
 									</Swiper>
 								</div>
@@ -394,6 +401,13 @@ export default function Section3() {
 													gifSrc="/assets/imgs/template/customvoice.gif" 
 													title="Custom Voice Generator" 
 													videoSrc="/assets/imgs/template/customvoice.mp4" 
+												/>
+											</SwiperSlide>
+											<SwiperSlide>
+												<VideoCard 
+													gifSrc="/assets/imgs/template/demo.gif" 
+													title="Call Agent For Demo RapidsAi" 
+													videoSrc="/assets/imgs/template/demo.mp4" 
 												/>
 											</SwiperSlide>
 											<SwiperSlide>
