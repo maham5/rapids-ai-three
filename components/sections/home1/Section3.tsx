@@ -254,49 +254,35 @@ export default function Section3() {
 	}
 
 	const VideoCard = ({
-		gifSrc,
-		title,
-		videoSrc, // Add videoSrc prop
-	}: { 
-		gifSrc: string; 
-		title: string; 
-		videoSrc: string; // Video path for the modal
-	}) => {
-		return (
-			<div
-				className="card-project-4 cursor-pointer"
-				onClick={() => setOpenVideo(videoSrc)} // Pass video path directly
-			>
-				<div className="card-image relative video-container">
-					<img
-						className="video-player"
-						src={gifSrc}
-						alt={title}
-						onError={(e) => {
-							console.error(`GIF load error for ${title}:`, e);
-						}}
-						style={{ width: "100%", height: "100%", objectFit: "cover" }}
-					/>
-				</div>
+  gifSrc,
+  title,
+  videoSrc,
+}: {
+  gifSrc: string;
+  title: string;
+  videoSrc?: string; // make optional
+}) => {
+  return (
+    <div
+      className="card-project-4 cursor-pointer"
+      onClick={() => videoSrc && setOpenVideo(videoSrc)} // 👈 important
+    >
+      <div className="card-image relative video-container">
+        <img
+          className="video-player"
+          src={gifSrc}
+          alt={title}
+          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        />
+      </div>
 
-				<div className="card-info">
-					<h6 className="heading-24-fitree-bold">{title}</h6>
-				</div>
+      <div className="card-info">
+        <h6 className="heading-24-fitree-bold">{title}</h6>
+      </div>
+    </div>
+  );
+};
 
-				<style jsx>{`
-					.video-container {
-						position: relative;
-					}
-					.card-info {
-						position: relative;
-						z-index: 1;
-						background: white;
-						pointer-events: auto;
-					}
-				`}</style>
-			</div>
-		);
-	};
 
 	return (
 		<>
@@ -351,13 +337,14 @@ export default function Section3() {
 													videoSrc="/assets/imgs/template/zamindarbot.mp4" 
 												/>
 											</SwiperSlide>
-											<SwiperSlide>
-												<VideoCard 
-													gifSrc="/assets/imgs/template/zamindarbot.gif" 
-													title="WeatherWalay" 
-													videoSrc="/assets/imgs/template/zamindarbot.mp4" 
-												/>
-											</SwiperSlide>
+							<SwiperSlide>
+  <VideoCard 
+    gifSrc="/assets/imgs/template/Weatherwalay.png"  // static image
+    title="WeatherWalay"
+  />
+</SwiperSlide>
+
+
 											<SwiperSlide>
 												<VideoCard 
 													gifSrc="/assets/imgs/template/jazzz.gif" 
