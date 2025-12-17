@@ -248,41 +248,55 @@ import { sliderGroup3Tab } from '@/util/swiperOptions'
 export default function Section3() {
 	const [isTab, setIsTab] = useState(1)
 	const [openVideo, setOpenVideo] = useState<string | null>(null);
+	const [mounted, setMounted] = useState(false);
+
+	useEffect(() => {
+		setMounted(true);
+	}, []);
 
 	const handleTab = (i: number) => {
 		setIsTab(i)
 	}
 
 	const VideoCard = ({
-  gifSrc,
-  title,
-  videoSrc,
-}: {
-  gifSrc: string;
-  title: string;
-  videoSrc?: string; // make optional
-}) => {
-  return (
-    <div
-      className="card-project-4 cursor-pointer"
-      onClick={() => videoSrc && setOpenVideo(videoSrc)} // 👈 important
-    >
-      <div className="card-image relative video-container">
-        <img
-          className="video-player"
-          src={gifSrc}
-          alt={title}
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
-      </div>
+		gifSrc,
+		title,
+		videoSrc,
+	}: {
+		gifSrc: string;
+		title: string;
+		videoSrc?: string;
+	}) => {
+		return (
+			<div
+				className="card-project-4 cursor-pointer"
+				onClick={() => videoSrc && setOpenVideo(videoSrc)}
+			>
+				<div className="card-image relative video-container">
+					<img
+						className="video-player"
+						src={gifSrc}
+						alt={title}
+						loading="lazy"
+						style={{ 
+							width: "100%", 
+							height: "100%", 
+							objectFit: "cover",
+							display: "block"
+						}}
+					/>
+				</div>
 
-      <div className="card-info">
-        <h6 className="heading-24-fitree-bold">{title}</h6>
-      </div>
-    </div>
-  );
-};
+				<div className="card-info">
+					<h6 className="heading-24-fitree-bold">{title}</h6>
+				</div>
+			</div>
+		);
+	};
 
+	if (!mounted) {
+		return null;
+	}
 
 	return (
 		<>
@@ -337,14 +351,12 @@ export default function Section3() {
 													videoSrc="/assets/imgs/template/zamindarbot.mp4" 
 												/>
 											</SwiperSlide>
-							<SwiperSlide>
-  <VideoCard 
-    gifSrc="/assets/imgs/template/Weatherwalay.png"  // static image
-    title="WeatherWalay"
-  />
-</SwiperSlide>
-
-
+														<SwiperSlide>
+											<VideoCard 
+												gifSrc="/assets/imgs/template/Weatherwalay.png"
+												title="WeatherWalay"
+											/>
+										</SwiperSlide>
 											<SwiperSlide>
 												<VideoCard 
 													gifSrc="/assets/imgs/template/jazzz.gif" 
