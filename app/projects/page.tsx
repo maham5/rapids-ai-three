@@ -199,7 +199,7 @@ export default function NewsGrid() {
       </section>
       
     
-      <footer>
+      <footer className="bgcolor">
         <Image src={logo}
           alt="hello"
           width={150}
