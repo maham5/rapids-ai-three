@@ -178,7 +178,7 @@ const [isOpen, setOpen] = useState(false)
 													
 														<div className="card-testimonials-2">
 															<div className="card-author">
-																<div className="author-image1">
+																<div className="author-image">
 																	<img src="/assets/imgs/pages/home2/vison.png" alt="Vatech" />
 																</div>
 																<div className="author-info">

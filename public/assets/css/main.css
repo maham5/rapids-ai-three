@@ -3608,36 +3608,91 @@ img {
 	padding: 30px;
 }
 
-.card-testimonials-2 .card-author {
+/* .card-testimonials-2 .card-author {
 	display: flex;
 	align-items: center;
 	margin-bottom: 30px;
 	
-}
+} */
+ /* .card-testimonials-2 .card-author{ */
+  /* display: flex;
+  align-items: center;     /* vertical center */
+  /* justify-content: center; /* center as a group */
+  /* gap: 20px;               /* equal gap between image & text */
+  /* margin-bottom: 30px;
+}  */ 
 
 
 
 
-.card-testimonials-2 .card-author .author-image {
+
+/* .card-testimonials-2 .card-author .author-image {
 	height: 80px;
 	width: 80px;
 
 	border-radius: 50%;
 	line-height: 70px;
 	text-align: center;
-	margin-right: 20px;
-	min-width: 80px;
+	/* margin-right: 20px; */
+	/* min-width: 80px;
+} */ 
+.card-testimonials-2 .card-author{
+  display: flex;
+  flex-direction: column;   /* icon above, title below (like your screenshot) */
+  align-items: center;      /* center horizontally */
+  justify-content: center;  /* center vertically */
+  gap: 12px;                /* equal gap between icon and title */
+  margin-bottom: 30px;
+  text-align: center;
 }
-.card-testimonials-2 .card-author .author-image1 {
+
+.card-testimonials-2 .card-author .author-image{
+  width: 80px;
+  height: 80px;
+  min-width: 80px;
+  position: relative;      /* ✅ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.card-testimonials-2 .card-author .author-image img{
+  position: absolute;      /* ✅ force center */
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  display: block;
+}
+
+
+.card-testimonials-2 .card-author .author-info{
+  display: flex;
+  justify-content: center;
+}
+
+.card-testimonials-2 .card-author .author-info h5{
+  margin: 0;                /* remove default spacing */
+  text-align: center;
+    transform: translateX(18px);
+}
+
+
+
+/* .card-testimonials-2 .card-author .author-image1 {
 	height: 38px;
 	width: 40px;
 
 	border-radius: 50%;
 	line-height: 70px;
 	text-align: center;
-	margin-right: 20px;
-	min-width: 80px;
-}
+	/* margin-right: 20px; */
+	/* min-width: 80px;
+} */ 
 
 
 /* Make testimonial cards flex row with gap */
