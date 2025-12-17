@@ -23,7 +23,7 @@ export default function Services() {
 						  {/* prettier-ignore */}
 						  {/* Blog Sidebar Section 1 */}
 						 
-						  <section className="box-faq-single-banner @@class">
+						  <section className="box-faq-single-bannercs @@class">
 							<div className="box-faq-single-banner-inner">
 							  <div className="container">
 								<h1 className="display-ag-2xl color-white">Consulting & Research</h1>

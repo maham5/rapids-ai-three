@@ -115,14 +115,14 @@ export default function Contact() {
   return (
     <>
       <Layout headerStyle={1}>
-        <section className="box-faq-single-banner @@class">
+        <section className="box-faq-single-bannerds @@class">
           <div className="box-faq-single-banner-inner">
             <div className="container">
               <h1 className="display-ag-2xl color-white">Contact Us</h1>
               <div className="box-breadcrumb">
                 <ul className="breadcrumb">
                   <li className="breadcrumb-item">
-                    <Link href="#">Home</Link>
+                    <Link href="/">Home</Link>
                   </li>
                   <li className="breadcrumb-item">
                     <span>Contact Us</span>

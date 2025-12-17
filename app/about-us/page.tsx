@@ -90,7 +90,7 @@ const [isOpen, setOpen] = useState(false)
 
 				{/* prettier-ignore */}
 				{/* Blog Sidebar Section 1 */}
-				<section className="box-faq-single-banner @@class">
+				<section className="box-faq-single-bannerai @@class">
 					<div className="box-faq-single-banner-inner">
 						<div className="container">
 							<h1 className="display-ag-2xl color-white">About Us</h1>

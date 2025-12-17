@@ -143,8 +143,8 @@ function page() {
 		  {/* prettier-ignore */}
 		  {/* Blog Sidebar Section 1 */}
 		 
-		  <section className="box-faq-single-banner @@class">
-			<div className="box-faq-single-banner-inner">
+		  <section className="box-faq-single-bannerprd @@class">
+			<div className="box-faq-single-banner-innerprd">
 			  <div className="container">
 				<h1 className="display-ag-2xl color-white">Product Engineering & Application Development</h1>
 				<div className="box-breadcrumb">

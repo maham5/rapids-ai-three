@@ -18983,13 +18983,19 @@ footer .social-icons svg {
 	padding: 0px 130px;
 }
 
-.box-faq-single-banner {
-	background-image: url(../imgs/pages/faq/banner.png);
+.box-faq-single-bannerai {
+	background-image: url(../imgs/template/ai.jpg);
 	background-repeat: no-repeat;
 	background-position: top left;
 	background-size: cover;
 }
 
+.box-faq-single-bannercs {
+	background-image: url(../imgs/template/cs.jpg);
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
+}
 .box-faq-single-banner-inner {
 	background-image: url(../imgs/pages/faq/bg-faq.png);
 	background-repeat: no-repeat;
@@ -18997,6 +19003,30 @@ footer .social-icons svg {
 	background-size: cover;
 	padding: 202px 0px;
 	position: relative;
+}
+.box-faq-single-bannerprd {
+	background-image: url(../imgs/template/prd.jpg);
+	background-repeat: no-repeat;
+	background-position: top right;
+	background-size: cover;
+	
+}
+.box-faq-single-banner-innerprd {
+	background-image: url(../imgs/template/prd.jpg);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+	background-size: cover;
+	padding: 202px 0px;
+	position: relative;
+}
+
+
+
+.box-faq-single-bannerds {
+	background-image: url(../imgs/template/ds.jpg);
+	background-repeat: no-repeat;
+	background-position: top left;
+	background-size: cover;
 }
 
 .box-faq-single-banner-inner::before {
@@ -19006,7 +19036,7 @@ footer .social-icons svg {
 	left: 0px;
 	height: 192px;
 	width: 196px;
-	background: url(../imgs/pages/faq/icon-1.png) no-repeat center;
+	/* background: url(../imgs/pages/faq/icon-1.png) no-repeat center; */
 }
 
 .box-faq-single-banner-inner::after {
@@ -19016,7 +19046,7 @@ footer .social-icons svg {
 	bottom: 0px;
 	height: 386px;
 	width: 395px;
-	background: url(../imgs/pages/faq/icon-2.png) no-repeat center;
+	/* background: url(../imgs/pages/faq/icon-2.png) no-repeat center; */
 }
 
 .box-breadcrumb .breadcrumb li {
