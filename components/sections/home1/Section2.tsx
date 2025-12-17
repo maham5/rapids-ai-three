@@ -60,12 +60,12 @@ const logos = [
   { src: img3, href: "https://www.upwork.com" },
   { src: img4, href: "https://www.fiverr.com" },
   { src: img5, href: "https://www.linkedin.com/company/rapidsai" },
-  { src: img6, href: "https://www.2p.com" },
-  { src: img8, href: "https://www.5p.com" },
-  { src: img9, href: "https://www.6p.com" },
-  { src: img11, href: "https://www.4p.com" },
-  { src: img12, href: "https://www.7p.com" },
-  { src: img13, href: "https://www.3p.com" },
+  { src: img6, href: "" },
+  { src: img8, href: "" },
+  { src: img9, href: "" },
+  { src: img11, href: "" },
+  { src: img12, href: "" },
+  { src: img13, href: "" },
 ];
 
 

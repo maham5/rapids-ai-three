@@ -6,11 +6,17 @@ export default function Section1() {
     <section className="video-banner-section">
       {/* Background video */}
       <div className="video-background">
-        <img
-          src="/assets/imgs/template/head.gif"
-          alt="Background animation"
-          className="video-element"
-        />
+         <video
+    className="video-element"
+    autoPlay
+    loop
+    muted
+    playsInline
+    preload="auto"
+  >
+  
+    <source src="/assets/imgs/template/head.mp4" type="video/mp4" />
+  </video>
        
       </div>
 
