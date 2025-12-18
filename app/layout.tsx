@@ -73,18 +73,19 @@ export default function RootLayout({
                 {/* + */}
                 
                 {children}
-      <SmokeyCursor
-  simulationResolution={64}
-  dyeResolution={512}
-  captureResolution={256}
-  pressureIterations={8}
-  densityDissipation={4}
-  velocityDissipation={3}
-  splatForce={2500}
-  enableShading={false}
-  intensity={0.6}
+ <SmokeyCursor
+  simulationResolution={32}      // ✅ Performance optimized
+  dyeResolution={256}            // ✅ Good quality
+  captureResolution={128}        // ✅ Less memory
+  pressureIterations={4}         // ✅ Fast computation
+  densityDissipation={6}         // 🔄 Slightly slower fade (more visible)
+  velocityDissipation={4}        // 🔄 Slightly slower disappear (bigger trail)
+  splatForce={1000}              // ⬆️ Increased - BIGGER splats
+  splatRadius={0.35}             // ⬆️ Add this - WIDER cursor effect
+  enableShading={false}          
+  intensity={0.5}                // ⬆️ Increased - MORE VISIBLE & COLORFUL
+  curl={8}                       // ⬆️ Add this - MORE SWIRLY/COLORFUL effect
 />
-
         
                 </body>
             
