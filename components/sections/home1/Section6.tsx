@@ -17,10 +17,10 @@ export default function Section6() {
 
     emailjs
       .sendForm(
-        "service_hdqv1a6",
-        "template_m8e7f1m",
+        "service_0y155z9",
+        "template_dfscj0b",
         e.currentTarget,          // ✅ typed correctly
-        "uGDgtUuNYpoWi4sHv"
+        "q1nciNYtQDcyT7bFC"
       )
       .then(
         (result: EmailJSResponseStatus) => {
